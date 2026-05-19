@@ -1,19 +1,32 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 import TrainingCard from "../components/TrainingCard.astro";
 import CtaBand from "../components/CtaBand.astro";
-import { pages, trainingCards, site } from "../data/site";
+import { site } from "../data/site";
 
-export function getStaticPaths() {
-  return Object.entries(pages).map(([slug, page]) => ({ params: { slug }, props: { page, slug } }));
+export async function getStaticPaths() {
+  const pages = await getCollection("pages");
+  return pages.map((entry) => ({
+    params: { slug: entry.id },
+    props: { page: entry.data },
+  }));
 }
 
-const { page, slug } = Astro.props;
+const { page } = Astro.props;
+const slug = Astro.params.slug as string;
+
+const allTrainingen =
+  slug === "trainingen"
+    ? (await getCollection("trainingen"))
+        .sort((a, b) => a.data.order - b.data.order)
+        .map((t) => t.data)
+    : [];
 ---
 <BaseLayout title={page.title} description={page.description}>
   <Hero eyebrow={page.eyebrow} title={page.h1} intro={page.intro} primaryHref={slug === "contact" ? `mailto:${site.email}` : "/contact/"} primaryLabel={slug === "contact" ? "Mail direct" : "Neem contact op"} secondaryHref={slug === "trainingen" ? undefined : "/trainingen/"} secondaryLabel={slug === "trainingen" ? undefined : "Bekijk trainingen"} image={page.heroImage} imageAlt={page.heroAlt} />
-  {slug === "trainingen" && <section class="py-16 sm:py-20"><div class="container-page"><div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{trainingCards.map((card) => <TrainingCard {...card} />)}</div></div></section>}
+  {slug === "trainingen" && <section class="py-16 sm:py-20"><div class="container-page"><div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{allTrainingen.map((card) => <TrainingCard {...card} />)}</div></div></section>}
   {page.sections.length > 0 && <section class="py-16 sm:py-20"><div class="container-page grid gap-6 md:grid-cols-2">{page.sections.map((section) => <article class="rounded-md border border-lifeline-blueLight bg-white p-6 shadow-sm"><h2 class="text-2xl font-black text-lifeline-blueDark">{section.heading}</h2><p class="mt-4 leading-8 text-lifeline-muted">{section.text}</p></article>)}</div></section>}
   {page.gallery && page.gallery.length > 0 && <section class="bg-lifeline-sand py-16 sm:py-20"><div class="container-page"><div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">{page.gallery.map((image) => <img src={image.src} alt={image.alt} class="aspect-[4/3] w-full rounded-md object-cover shadow-soft" loading="lazy" decoding="async" />)}</div></div></section>}
   {slug === "contact" && <section class="py-16 sm:py-20"><div class="container-page grid gap-10 lg:grid-cols-[0.85fr_1.15fr]"><address class="rounded-md bg-lifeline-sand p-6 not-italic leading-8 text-lifeline-muted"><strong class="block text-lifeline-blueDark">Life-Line-Trainingen</strong>Sleeg 1<br />6905 BH Zevenaar<br /><a class="font-bold text-lifeline-blue hover:text-lifeline-orange" href={`mailto:${site.email}`}>{site.email}</a></address><form action={`mailto:${site.email}`} method="post" enctype="text/plain" class="rounded-md border border-lifeline-blueLight bg-white p-6 shadow-soft"><h2 class="text-2xl font-black text-lifeline-blueDark">Contactformulier</h2><div class="mt-6 grid gap-5 sm:grid-cols-2"><label class="grid gap-2 text-sm font-bold text-lifeline-blueDark">Naam<input required name="Naam" class="focus-ring min-h-12 rounded-md border border-lifeline-blueLight px-4 font-normal text-lifeline-ink" /></label><label class="grid gap-2 text-sm font-bold text-lifeline-blueDark">Organisatie<input name="Organisatie" class="focus-ring min-h-12 rounded-md border border-lifeline-blueLight px-4 font-normal text-lifeline-ink" /></label><label class="grid gap-2 text-sm font-bold text-lifeline-blueDark">E-mailadres<input required type="email" name="E-mail" class="focus-ring min-h-12 rounded-md border border-lifeline-blueLight px-4 font-normal text-lifeline-ink" /></label><label class="grid gap-2 text-sm font-bold text-lifeline-blueDark">Telefoonnummer<input name="Telefoon" class="focus-ring min-h-12 rounded-md border border-lifeline-blueLight px-4 font-normal text-lifeline-ink" /></label></div><label class="mt-5 grid gap-2 text-sm font-bold text-lifeline-blueDark">Bericht<textarea required name="Bericht" rows="6" class="focus-ring rounded-md border border-lifeline-blueLight px-4 py-3 font-normal text-lifeline-ink"></textarea></label><button class="focus-ring mt-6 min-h-12 rounded-md bg-lifeline-orange px-6 py-3 text-sm font-bold text-white shadow-soft hover:bg-lifeline-blueDark">Verstuur aanvraag</button></form></div></section>}

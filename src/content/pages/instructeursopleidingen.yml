@@ -1,0 +1,17 @@
+title: "Instructeursopleidingen | BLS en PBLS instructeur worden"
+description: "Word reanimatie-instructeur bij Life-Line-Trainingen. Kleine groepen, persoonlijke aandacht en NRR-richtlijnen."
+eyebrow: "Instructeursopleidingen"
+h1: "Word een betere instructeur in reanimatie en eerste hulp."
+intro: "Bij Life-Line-Trainingen ontwikkel je niet alleen technische vaardigheden, maar ook je didactiek. Je leert cursisten begeleiden, feedback geven en trainingen betekenisvol maken."
+heroImage: "/assets/photos/waterveiligheid-aanwijzen.jpg"
+heroAlt: "Instructeur wijst een aandachtspunt aan in de zwembadomgeving."
+gallery:
+  - src: "/assets/photos/over-instructeur-portret.jpg"
+    alt: "Portret van een Life-Line instructeur."
+  - src: "/assets/photos/instructie-aan-bad.jpg"
+    alt: "Praktische instructie aan de badrand."
+sections:
+  - heading: "Kleine groepen en persoonlijke begeleiding"
+    text: "De opleiding wordt verzorgd volgens de richtlijnen van de Nederlandse Reanimatie Raad, met ruimte voor oefening, reflectie en persoonlijke groei."
+  - heading: "Meer dan instructie geven"
+    text: "Een goede instructeur beheerst de vaardigheden, maar weet ook hoe mensen leren. Daarom is er aandacht voor leerprocessen, feedback en actuele ontwikkelingen."

@@ -1,9 +1,14 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 import TrainingCard from "../components/TrainingCard.astro";
 import CtaBand from "../components/CtaBand.astro";
-import { trainingCards } from "../data/site";
+
+const trainingen = await getCollection("trainingen");
+const trainingCards = trainingen
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((t) => t.data);
 
 const highlights = [
   { src: "/assets/photos/bls-aed-training-breed.jpg", alt: "BLS training met reanimatiepop en AED." },

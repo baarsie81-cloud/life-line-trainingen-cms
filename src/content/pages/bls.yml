@@ -1,0 +1,17 @@
+title: "BLS training | Reanimatie en AED volgens NRR-richtlijnen"
+description: "Volg een praktijkgerichte BLS training en leer volwassenen reanimeren en een AED gebruiken."
+eyebrow: "BLS"
+h1: "Leer reanimeren en handelen met een AED."
+intro: "Tijdens de BLS training leer je hoe je een volwassene reanimeert, hoe je een AED veilig inzet en hoe je rustig blijft handelen wanneer iedere seconde telt."
+heroImage: "/assets/photos/bls-aed-training-breed.jpg"
+heroAlt: "BLS training met reanimatiepop en AED aan de badrand."
+gallery:
+  - src: "/assets/photos/bls-reanimatie-aed.jpg"
+    alt: "Borstcompressies oefenen op een reanimatiepop."
+  - src: "/assets/photos/bls-aed-training-breed.jpg"
+    alt: "BLS training met reanimatiepop en AED."
+sections:
+  - heading: "Praktisch oefenen volgens duidelijke stappen"
+    text: "Je oefent borstcompressies, beademingen, AED-gebruik en samenwerking met omstanders in herkenbare scenario's."
+  - heading: "Meer zekerheid in een noodsituatie"
+    text: "Na afloop weet je wat je moet doen bij een circulatiestilstand en heb je geoefend met de vaardigheden die daarbij horen."

@@ -1,0 +1,57 @@
+backend:
+  name: github
+  repo: baarsie81-cloud/life-line-trainingen-cms
+  branch: main
+
+media_folder: public/assets/uploads
+public_folder: /assets/uploads
+
+locale: nl
+
+collections:
+  - name: paginas
+    label: "Pagina's"
+    folder: src/content/pages
+    create: false
+    slug: "{{slug}}"
+    extension: yml
+    format: yaml
+    identifier_field: h1
+    fields:
+      - { label: "Paginatitel (SEO)", name: title, widget: string }
+      - { label: "Omschrijving (SEO)", name: description, widget: text }
+      - { label: "Eyebrow", name: eyebrow, widget: string }
+      - { label: "H1 - Hoofdtitel", name: h1, widget: string }
+      - { label: "Introductietekst", name: intro, widget: text }
+      - { label: "Hero afbeelding", name: heroImage, widget: image }
+      - { label: "Hero alt-tekst", name: heroAlt, widget: string }
+      - label: "Galerij"
+        name: gallery
+        widget: list
+        required: false
+        fields:
+          - { label: "Afbeelding", name: src, widget: image }
+          - { label: "Alt-tekst", name: alt, widget: string }
+      - label: "Secties"
+        name: sections
+        widget: list
+        required: false
+        fields:
+          - { label: "Koptekst", name: heading, widget: string }
+          - { label: "Tekst", name: text, widget: text }
+
+  - name: trainingen
+    label: "Trainingskaarten"
+    folder: src/content/trainingen
+    create: false
+    slug: "{{slug}}"
+    extension: yml
+    format: yaml
+    identifier_field: title
+    fields:
+      - { label: "Volgorde", name: order, widget: number, value_type: int }
+      - { label: "Titel", name: title, widget: string }
+      - { label: "URL", name: href, widget: string }
+      - { label: "Eyebrow", name: eyebrow, widget: string }
+      - { label: "Omschrijving", name: description, widget: text }
+      - { label: "Afbeelding", name: image, widget: image, required: false }
