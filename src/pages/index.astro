@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import TrainingCard from "../components/TrainingCard.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { trainingCards } from "../data/site";
+
+const highlights = [
+  { src: "/assets/photos/bls-aed-training-breed.jpg", alt: "BLS training met reanimatiepop en AED." },
+  { src: "/assets/photos/waterveiligheid-rescue-tube.jpg", alt: "Reddingsmateriaal tijdens een waterveiligheidstraining." },
+  { src: "/assets/photos/waterredding-praktijk.jpg", alt: "Praktijkoefening waterredding in het zwembad." }
+];
+---
+<BaseLayout title="Life-Line-Trainingen | Reanimatie, eerste hulp en waterveiligheid" description="Life-Line-Trainingen helpt zwembadprofessionals, hulpverleners en instructeurs met praktijkgerichte trainingen.">
+  <Hero eyebrow="Reanimatie, eerste hulp en waterveiligheid" title="Trainingen die mensen laten handelen wanneer het erop aankomt." intro="Life-Line-Trainingen verzorgt praktijkgerichte trainingen voor zwembaden, hulpverleners en instructeurs. We combineren vakkennis, didactiek en realistische oefensituaties, zodat cursisten weten wat ze doen en waarom." primaryHref="/trainingen/" primaryLabel="Bekijk trainingen" secondaryHref="/contact/" secondaryLabel="Vraag advies aan" image="/assets/photos/instructeur-zwembad-breed.jpg" imageAlt="Life-Line instructeur met reddingsmateriaal in een zwembad." />
+  <section class="py-16 sm:py-20"><div class="container-page grid gap-10 lg:grid-cols-[0.9fr_1.1fr]"><div class="max-w-3xl"><p class="mb-3 text-sm font-black uppercase tracking-[0.2em] text-lifeline-orange">Voor wie</p><h2 class="font-display text-3xl font-black leading-tight text-lifeline-blueDark sm:text-4xl">Van zwembadteam tot instructeur</h2><p class="mt-4 text-lg leading-8 text-lifeline-muted">De trainingen sluiten aan op de werkomgeving van de cursist. Dat maakt oefenen herkenbaar, actief en direct toepasbaar.</p></div><div class="grid gap-5 sm:grid-cols-2">{trainingCards.map((card) => <TrainingCard {...card} />)}</div></div></section>
+  <section class="bg-lifeline-sand py-16 sm:py-20"><div class="container-page grid gap-10 lg:grid-cols-3"><article class="rounded-md bg-white p-6 shadow-sm"><h2 class="text-2xl font-black text-lifeline-blueDark">Lifesaverprogramma</h2><p class="mt-4 leading-7 text-lifeline-muted">Een jaarprogramma waarin eerste hulp, bedrijfshulpverlening en zwemmend redden samenkomen voor zwembadorganisaties.</p></article><article class="rounded-md bg-white p-6 shadow-sm"><h2 class="text-2xl font-black text-lifeline-blueDark">Training op locatie</h2><p class="mt-4 leading-7 text-lifeline-muted">Oefenen in de omgeving waar je team ook echt werkt, met herkenbare situaties en eigen materialen.</p></article><article class="rounded-md bg-white p-6 shadow-sm"><h2 class="text-2xl font-black text-lifeline-blueDark">Maatwerk per team</h2><p class="mt-4 leading-7 text-lifeline-muted">De inhoud wordt afgestemd op leerwensen, risico's en de dagelijkse praktijk van de organisatie.</p></article></div></section>
+  <section class="py-16 sm:py-20"><div class="container-page"><div class="mb-8 max-w-3xl"><p class="mb-3 text-sm font-black uppercase tracking-[0.2em] text-lifeline-orange">In beeld</p><h2 class="font-display text-3xl font-black leading-tight text-lifeline-blueDark sm:text-4xl">Oefenen in herkenbare praktijksituaties</h2></div><div class="grid gap-5 md:grid-cols-3">{highlights.map((image) => <img src={image.src} alt={image.alt} class="aspect-[4/3] w-full rounded-md object-cover shadow-soft" loading="lazy" decoding="async" />)}</div></div></section>
+  <CtaBand title="Benieuwd welke training past bij jouw organisatie?" text="Vertel kort wat je wilt bereiken. Dan denken we mee over een training die past bij jouw mensen, risico's en werkomgeving." />
+</BaseLayout>

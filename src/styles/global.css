@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-white font-sans text-lifeline-ink antialiased; }
+  ::selection { @apply bg-lifeline-orange text-white; }
+  a { @apply transition-colors; }
+}
+
+@layer components {
+  .container-page { @apply mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8; }
+  .focus-ring { @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-lifeline-orange; }
+}
