@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: baarsie81-cloud/life-line-trainingen-cms
   branch: main
 
 media_folder: public/assets/uploads
